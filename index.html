@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zachary Whelan | Portfolio</title>
+    <!-- Fonts: Inter for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #1e293b; /* Slate 800 */
+            --secondary-color: #475569; /* Slate 600 */
+            --accent-color: #2563eb; /* Royal Blue */
+            --accent-hover: #1d4ed8;
+            --bg-color: #f8fafc; /* Very light slate */
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .brand span {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .social-links a {
+            font-size: 1.25rem;
+            margin-left: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 4rem 0 3rem;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--card-bg);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h2 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--secondary-color);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        /* --- TAB NAVIGATION --- */
+        .tabs-container {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .tab-nav {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-color);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* --- TAB CONTENT AREA --- */
+        .tab-content {
+            display: none; /* Hidden by default */
+            padding: 2rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block; /* Shown when active */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- CONTENT STYLES --- */
+        h3.section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+
+        /* Card Style for Jobs/Education */
+        .card {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        .card:last-child {
+            border-bottom: none;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-meta {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .card-body ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            color: var(--secondary-color);
+            margin-top: 0.75rem;
+        }
+
+        .card-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Tags */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background-color: #eff6ff;
+            color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid #bfdbfe;
+        }
+
+        /* Education Specific */
+        .edu-entry {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+        
+        .footer-link {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .tab-nav {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .tab-btn.active::after {
+                width: 4px;
+                height: 100%;
+                left: 0;
+                top: 0;
+            }
+
+            .card-header {
+                flex-direction: column;
+            }
+            
+            .card-meta {
+                margin-top: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="brand">
+                <h1>Zachary Whelan</h1>
+                <span>Seeking Finance, Investment & Analytical Roles</span>
+            </div>
+            <div class="social-links">
+                <a href="mailto:zachary.whelan4203@yahoo.co.uk" title="Email Me"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/zachary-whelan-23604zw/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <!-- Make sure profile.jpg is in the assets folder -->
+        <img src="assets/profile.jpg" alt="Zachary Whelan" class="profile-img">
+        <h2>Hello, I'm Zachary.</h2>
+        <p>
+            Philosophy, Politics, and Economics student at Durham University on track for a 1st Class degree. 
+            I combine financial acumen with technical skills in Python and Generative AI to solve complex problems.
+        </p>
+        <!-- Placeholder link for PDF download -->
+        <a href="assets/cv.pdf" class="btn" target="_blank">
+            <i class="fas fa-download"></i> Download CV
+        </a>
+    </section>
+
+    <!-- Tabbed Content Section -->
+    <div class="container">
+        <div class="tabs-container">
+            <!-- Navigation Buttons -->
+            <nav class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('about')">About & Skills</button>
+                <button class="tab-btn" onclick="switchTab('experience')">Experience</button>
+                <button class="tab-btn" onclick="switchTab('projects')">Projects</button>
+            </nav>
+
+            <!-- TAB 1: ABOUT & SKILLS -->
+            <div id="about" class="tab-content active">
+                <h3 class="section-title">Education</h3>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Durham University</div>
+                            <div class="card-subtitle">BA (Hons) Philosophy, Politics, and Economics</div>
+                        </div>
+                        <div class="card-meta">Sept. 2022 – Jun. 2026</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Result:</strong> On track for 1st Class Honors.</li>
+                            <li><strong>Notable Modules:</strong> Economic Methods, Macro Application and Policy, Principles of Economics.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Aarhus University</div>
+                            <div class="card-subtitle">Business School (Year Abroad)</div>
+                        </div>
+                        <div class="card-meta">Sept. 2024 – Jun. 2025</div>
+                    </div>
+                    <div class="card-body">
+                        <p style="color: var(--secondary-color)">Focused on Applied Finance, web app development using Python, and Generative AI integration in business contexts.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Hampton School</div>
+                            <div class="card-subtitle">A-Levels & GCSEs</div>
+                        </div>
+                        <div class="card-meta">Sept. 2014 – Jun. 2021</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>A-levels:</strong> Mathematics (A*), Economics (A*), Politics (A*), AS Level Art (A).</li>
+                            <li><strong>GCSEs:</strong> 10 A*s and 1 A (including Further Maths).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="section-title">Technical Skills & Interests</h3>
+			<div class="skills-grid">
+    				<span class="skill-tag">Python (Basic level)</span>
+    				<span class="skill-tag">Excel</span>
+    				<span class="skill-tag">Bloomberg Terminal</span>
+    				<span class="skill-tag">Text Mining, NLP & LLMs</span>
+    				<span class="skill-tag">Data Analysis</span>
+    				<span class="skill-tag">Leadership</span>
+    				<span class="skill-tag">Financial Analysis</span>
+    				<span class="skill-tag">Investment Research</span>
+    				<span class="skill-tag">Client Relations</span>
+   				<span class="skill-tag">Problem Solving</span>
+		</div>
+            </div>
+
+            <!-- TAB 2: EXPERIENCE -->
+            <div id="experience" class="tab-content">
+                <h3 class="section-title">Professional Experience</h3>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Pictet Asset Management</div>
+                            <div class="card-subtitle">Intern (London, UK)</div>
+                        </div>
+                        <div class="card-meta">Jul. 2025 – Aug. 2025</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Collaborated with the Total Return team on two flagship funds (Atlas and Consumer, $4.1bn AUM), contributing to analysis of long-short equity strategies.</li>
+                            <li>Reviewed 15+ analyst reports during Diageo's earnings season and produced an 8-page investment thesis linking demographic trends to valuations.</li>
+                            <li>Completed rotational internship across 10 investment teams (Multi-Asset, GEM, Trading, ESG) to understand cross-function interaction.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">The Championships, Wimbledon (AELTC)</div>
+                            <div class="card-subtitle">Retail Stock Team Leader</div>
+                        </div>
+                        <div class="card-meta">Jun. 2024 – Jul. 2025</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Promoted to Team Leader a year early; supervised a team of 10 in the Centre Court Shop.</li>
+                            <li>Coordinated 100+ daily inventory replenishments, led briefings, and delegated tasks during one of the UK’s most prestigious events.</li>
+                        </ul>
+                    </div>
+                </div>
+
+		<div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Camp Dudley</div>
+                            <div class="card-subtitle">Summer Camp Counsellor (New York, USA)</div>
+                        </div>
+                        <div class="card-meta">Jul. 2019 – Aug. 2023</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Led daily activities for a cabin of 10 boys, planning and executing programs across four summers whilst developing leadership skills.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Vail Resorts</div>
+                            <div class="card-subtitle">Professional Ski and Snowboard Instructor (Colorado, USA)</div>
+                        </div>
+                        <div class="card-meta">Nov. 2021 – Apr. 2022</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Relocated independently to the US at 18. Earned PSIA Level 1 certification and attracted pro-deals with North Face and Helly Hansen.</li>
+                            <li>Achieved a 70% repeat client rate through tailored lesson plans for groups of 10–12.</li>
+                            <li>Demonstrated resilience working 15-day streaks in demanding conditions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">The River Café</div>
+                            <div class="card-subtitle">Waiter (London, UK)</div>
+                        </div>
+                        <div class="card-meta">Aug. 2021 – Nov. 2021</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Served 50–70 high-profile clients per shift in a Michelin-star restaurant.</li>
+                            <li>Collaborated closely with a 15-person front-of-house team.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: PROJECTS -->
+            <div id="projects" class="tab-content">
+                <h3 class="section-title">Technical Projects & Research</h3>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Generative AI Applied Project</div>
+                            <div class="card-subtitle">Spotify Playlist Generator</div>
+                        </div>
+                        <div class="card-meta">Aug. 2024 – Dec. 2024</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Tools:</strong> Python, Spotify API, GenAI.</li>
+                            <li>Built a custom playlist generator integrating 35+ structured input options with free-text descriptions to deliver personalized playlists.</li>
+                            <li>Coordinated with 4 teammates on interface design and integration; conducted user testing to improve usability.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Data Analysis & Text Mining Research</div>
+                            <div class="card-subtitle">NLP Diplomatic Analysis</div>
+                        </div>
+                        <div class="card-meta">Nov. 2023 – May 2024</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Tools:</strong> LLMs, NLP, Excel.</li>
+                            <li>Analyzed 200+ documents on Turkish-Armenian diplomatic relations using NLP capabilities of an LLM.</li>
+                            <li>Performed sentiment and rhetoric analysis to identify key diplomatic trends.</li>
+                            <li>Streamlined data management through Excel, structuring complex datasets to extract insights.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Applied Finance Coursework</div>
+                            <div class="card-subtitle">Aarhus University Business School</div>
+                        </div>
+                        <div class="card-meta">Jan. 2025 – Jun. 2025</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Focus:</strong> Financial Modelling, Valuation.</li>
+                            <li>Applied core financial concepts including portfolio theory, capital budgeting, and risk-return analysis.</li>
+                            <li>Utilized Excel for financial modelling, scenario analysis, and valuation exercises in case studies.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Zachary Whelan. All rights reserved.</p>
+            <p>
+                <a href="mailto:zachary.whelan4203@yahoo.co.uk" class="footer-link">Email</a> | 
+                <a href="https://www.linkedin.com/in/zachary-whelan-23604zw/" target="_blank" class="footer-link">LinkedIn</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Tab Logic -->
+    <script>
+        function switchTab(tabId) {
+            // 1. Hide all tab content
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 2. Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 3. Show the selected tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // 4. Add active class to the clicked button
+            // We find the button that calls this function with this specific argument
+            // A simple way is to loop through buttons and check their onclick attribute or use event delegation.
+            // But here, we can simply query by the text logic or pass 'this' in the function.
+            // To keep it clean in the HTML, let's just loop and match the ID roughly or simpler:
+            // Let's re-select based on the index or logic, but actually, the easiest way 
+            // without passing 'this' is to match the button that corresponds to the ID.
+            
+            // Re-approach: Find the button that targets this tab.
+            const targetBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if (targetBtn) {
+                targetBtn.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
