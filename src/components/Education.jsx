@@ -11,8 +11,8 @@ export default function Education() {
       <div className="space-y-10">
         {education.map((entry, i) => (
           <Reveal key={entry.school} delay={i * 60} className="grid sm:grid-cols-[220px_1fr] gap-2 sm:gap-8">
-            <p className="text-sm text-neutral-500 dark:text-neutral-500">{entry.meta}</p>
-            <div>
+            <p className="text-sm text-neutral-500 dark:text-neutral-500 order-2 sm:order-1">{entry.meta}</p>
+            <div className="order-1 sm:order-2">
               <h3 className="font-medium text-neutral-900 dark:text-neutral-100">{entry.school}</h3>
               <p className="text-sm text-accent mb-3">{entry.detail}</p>
               <ul className="space-y-2">
