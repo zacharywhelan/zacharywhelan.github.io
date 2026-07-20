@@ -47,7 +47,7 @@ export const education = [
 export const experience = [
   {
     org: 'Pictet Asset Management',
-    role: 'Work Experience',
+    role: 'Intern',
     location: 'London, UK',
     meta: 'Jul. 2025 – Aug. 2025',
     points: [
