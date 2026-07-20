@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+
+  --color-ink: #0f1115;
+  --color-paper: #fafaf9;
+  --color-accent: #1e3a5f;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: light-dark(#fafaf9, #0b0c0f);
+  color: light-dark(#1c1e22, #e7e6e3);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #1e3a5f;
+  color: #fff;
+}
+
+/* Scroll-reveal utility, toggled by IntersectionObserver in JS */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
