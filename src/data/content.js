@@ -4,8 +4,8 @@ export const profile = {
   blurb: 'PPE graduate from Durham University, First Class Honours.',
   email: 'zachary.whelan4203@yahoo.co.uk',
   linkedin: 'https://www.linkedin.com/in/zachary-whelan-23604zw/',
-  cv: '/zacharywhelan-portfolio/cv.pdf',
-  photo: '/zacharywhelan-portfolio/images/profile.jpg',
+  cv: '/cv.pdf',
+  photo: '/images/profile.jpg',
 }
 
 export const nav = [
@@ -115,12 +115,12 @@ export const projects = [
     ],
     links: [],
     gallery: [
-      { src: '/zacharywhelan-portfolio/images/zach-terminal/portfolio.png', alt: 'Live ISA portfolio tracking' },
-      { src: '/zacharywhelan-portfolio/images/zach-terminal/watchlist.png', alt: 'EM watchlist with live chart' },
-      { src: '/zacharywhelan-portfolio/images/zach-terminal/search.png', alt: 'Ticker search with 11-signal scorecard for AAPL' },
-      { src: '/zacharywhelan-portfolio/images/zach-terminal/macro.png', alt: 'Macro dashboard — yields, world indices, FX' },
-      { src: '/zacharywhelan-portfolio/images/zach-terminal/news.png', alt: 'Global Markets news tab' },
-      { src: '/zacharywhelan-portfolio/images/zach-terminal/option.png', alt: 'Options chain for a US-listed ticker' },
+      { src: '/images/zach-terminal/portfolio.png', alt: 'Live ISA portfolio tracking' },
+      { src: '/images/zach-terminal/watchlist.png', alt: 'EM watchlist with live chart' },
+      { src: '/images/zach-terminal/search.png', alt: 'Ticker search with 11-signal scorecard for AAPL' },
+      { src: '/images/zach-terminal/macro.png', alt: 'Macro dashboard — yields, world indices, FX' },
+      { src: '/images/zach-terminal/news.png', alt: 'Global Markets news tab' },
+      { src: '/images/zach-terminal/option.png', alt: 'Options chain for a US-listed ticker' },
     ],
   },
   {
