@@ -1,4 +1,9 @@
+import { useState } from 'react'
+import Lightbox from './Lightbox'
+
 export default function ProjectCard({ project, featured = false }) {
+  const [lightboxIndex, setLightboxIndex] = useState(null)
+
   return (
     <div
       className={`rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 sm:p-8 ${
@@ -53,13 +58,22 @@ export default function ProjectCard({ project, featured = false }) {
 
       {project.gallery?.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-5">
-          {project.gallery.map((img) => (
-            <img
+          {project.gallery.map((img, i) => (
+            <button
               key={img.src}
-              src={img.src}
-              alt={img.alt}
-              className="rounded-lg border border-neutral-200 dark:border-neutral-800 object-cover aspect-video"
-            />
+              onClick={() => setLightboxIndex(i)}
+              className="group relative rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800 aspect-video cursor-zoom-in"
+            >
+              <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/40 transition-colors">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-medium flex items-center gap-1.5">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                  </svg>
+                  Click to expand
+                </span>
+              </div>
+            </button>
           ))}
         </div>
       )}
@@ -68,6 +82,15 @@ export default function ProjectCard({ project, featured = false }) {
         <div className="mt-5 rounded-lg border border-dashed border-neutral-300 dark:border-neutral-700 py-8 text-center text-sm text-neutral-400 dark:text-neutral-600">
           Screenshots coming soon
         </div>
+      )}
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          images={project.gallery}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onNavigate={setLightboxIndex}
+        />
       )}
     </div>
   )
