@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 export default function Lightbox({ images, index, onClose, onNavigate }) {
   useEffect(() => {
@@ -13,17 +14,24 @@ export default function Lightbox({ images, index, onClose, onNavigate }) {
 
   const img = images[index]
 
-  return (
+  // Rendered via portal directly into <body>: an ancestor further up the tree
+  // (the scroll-reveal wrapper) animates with a CSS transform, and any
+  // transformed ancestor turns position:fixed descendants into
+  // position:absolute-relative-to-that-ancestor instead of the viewport —
+  // without the portal this modal ends up pinned partway down the page
+  // instead of covering the screen.
+  return createPortal(
     <div
-      className="fixed inset-0 z-[100] bg-black/90 overflow-y-auto"
+      className="fixed inset-0 z-[100] bg-black/90 overflow-y-auto overscroll-contain"
+      style={{ WebkitOverflowScrolling: 'touch' }}
       onClick={onClose}
     >
-      <div className="min-h-full flex items-center justify-center p-4 sm:p-8">
+      <div className="min-h-full flex p-4 sm:p-8">
         <img
           src={img.src}
           alt={img.alt}
           onClick={(e) => e.stopPropagation()}
-          className="max-w-full max-h-[80vh] object-contain rounded-lg"
+          className="m-auto max-w-full max-h-[80vh] object-contain rounded-lg"
         />
       </div>
 
@@ -77,6 +85,7 @@ export default function Lightbox({ images, index, onClose, onNavigate }) {
           </button>
         </>
       )}
-    </div>
+    </div>,
+    document.body
   )
 }
