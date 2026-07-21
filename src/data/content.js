@@ -19,10 +19,7 @@ export const education = [
     school: 'Durham University',
     detail: 'BA (Hons) Philosophy, Politics, and Economics',
     meta: 'Sept. 2022 – Jul. 2026',
-    points: [
-      'Graduated with First Class Honours.',
-      'Notable modules: Economic Methods, Macro Application and Policy, Principles of Economics.',
-    ],
+    points: ['Graduated with First Class Honours.'],
   },
   {
     school: 'Aarhus University',
