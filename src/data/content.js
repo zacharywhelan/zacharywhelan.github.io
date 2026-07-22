@@ -9,8 +9,8 @@ export const profile = {
 }
 
 export const nav = [
-  { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
 ]
 
